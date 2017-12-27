@@ -14,8 +14,11 @@ class MainFunctions(object):
                 result = result - args[i]
         return result
 
-    def multiply(self):
-        pass
+    def multiply(self, *args):
+        result = 1
+        for i in args:
+            result = result * i
+        return result
 
     def divide(self):
         pass
