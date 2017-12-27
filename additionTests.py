@@ -22,6 +22,10 @@ class AdditionTests(unittest.TestCase):
         result = self.test.add()
         self.assertEqual(0, result)
 
+    def test_adding_decimal_numbers(self):
+        result = self.test.add(2.5, 3.75)
+        self.assertEqual(6.25, result)
+
 
 if __name__ == '__main__':
     unittest.main()

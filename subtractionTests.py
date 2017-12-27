@@ -22,5 +22,9 @@ class SubtractionTests(unittest.TestCase):
         result = self.test.subtract(-10, 10, 10, 10, 5)
         self.assertEqual(-45, result)
 
+    def test_subtracting_decimals(self):
+        result = self.test.subtract(-10, .5)
+        self.assertEqual(-10.5, result)
+
 if __name__ == '__main__':
     unittest.main()

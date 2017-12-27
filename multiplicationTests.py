@@ -26,5 +26,9 @@ class MultiplicationTests(unittest.TestCase):
         result = self.test.multiply(0, 0, 5)
         self.assertEqual(0, result)
 
+    def test_multiplying_decimals(self):
+        result = self.test.multiply(0.5, 0.5)
+        self.assertEqual(0.25, result)
+
 if __name__ == '__main__':
     unittest.main()
