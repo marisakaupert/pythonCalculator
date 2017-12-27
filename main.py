@@ -7,7 +7,12 @@ class MainFunctions(object):
         return result
 
     def subtract(self, *args):
-        pass
+        for i in range(1, len(args)):
+            if i == 1:
+                result = args[i-1] - args[i]
+            else:
+                result = result - args[i]
+        return result
 
     def multiply(self):
         pass
