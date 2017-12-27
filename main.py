@@ -1,6 +1,3 @@
-import math
-
-
 class MainFunctions(object):
     def add(self, *args):
         result = sum(args)
@@ -20,8 +17,15 @@ class MainFunctions(object):
             result = result * i
         return result
 
-    def divide(self):
-        pass
+    def divide(self, *args):
+        for i in range(1, len(args)):
+            if args[i] == 0:
+                return "Cannot divide by 0"
+            elif i == 1:
+                result = args[i-1] / args[i]
+            else:
+                result = result / args[i]
+        return round(result, 12)
 
     def modulus(self):
         pass
