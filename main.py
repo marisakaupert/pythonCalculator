@@ -1,3 +1,6 @@
+import math
+
+
 class MainFunctions(object):
     def add(self, *args):
         result = sum(args)
@@ -30,8 +33,14 @@ class MainFunctions(object):
     def modulus(self):
         pass
 
-    def squareRoot(self):
-        pass
+    def squareRoot(self, number=None):
+        if number is None:
+            return "Invalid Input"
+        elif number < 0:
+            return "Invalid Input"
+        else:
+            result = math.sqrt(number)
+            return result
 
     def square(self):
         pass
