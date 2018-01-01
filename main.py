@@ -42,8 +42,11 @@ class MainFunctions(object):
             result = math.sqrt(number)
             return result
 
-    def square(self):
-        pass
+    def powerOfTwo(self, number=None):
+        if number is None:
+            return "Invalid Input"
+        else:
+            return math.pow(number, 2)
 
     def cube(self):
         pass
