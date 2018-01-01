@@ -5,7 +5,6 @@ from main import MainFunctions
 class PowerOfTwoTests(unittest.TestCase):
     def setUp(self):
         self.test = MainFunctions()
-        self.square = 2
 
     def test_square_a_number(self):
         result = self.test.powerOfTwo(12)

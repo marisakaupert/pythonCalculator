@@ -48,8 +48,11 @@ class MainFunctions(object):
         else:
             return math.pow(number, 2)
 
-    def cube(self):
-        pass
+    def cube(self, number=None):
+        if number is None:
+            return "Invalid Input"
+        else:
+            return math.pow(number, 3)
 
     def inverse(self):
         pass
