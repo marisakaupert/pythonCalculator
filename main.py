@@ -54,5 +54,8 @@ class MainFunctions(object):
         else:
             return math.pow(number, 3)
 
-    def inverse(self):
-        pass
+    def inverse(self, number=None):
+        if number is None or number == 0:
+            return "Invalid Input"
+        else:
+            return round(1/number, 12)
