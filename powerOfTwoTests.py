@@ -2,7 +2,7 @@ import unittest
 from main import MainFunctions
 
 
-class SquaredTests(unittest.TestCase):
+class PowerOfTwoTests(unittest.TestCase):
     def setUp(self):
         self.test = MainFunctions()
         self.square = 2
