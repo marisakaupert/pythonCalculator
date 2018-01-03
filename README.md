@@ -1,1 +1,1 @@
-# pythonCalculator
+Python claculator using Python 2.7 and PyQt5
