@@ -28,6 +28,7 @@ class MainFunctions(object):
                 result = args[i-1] / args[i]
             else:
                 result = result / args[i]
+        print(result)
         return round(result, 12)
 
     def modulus(self):
