@@ -3,6 +3,7 @@ import os
 from design import Ui_Dialog
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class MainWindow(QtWidgets.QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
@@ -11,6 +12,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def makeConnections(self):
         pass
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
