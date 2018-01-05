@@ -1,5 +1,5 @@
 import unittest
-from main import MainFunctions
+from arithmaticFunctions import MainFunctions
 
 
 class CubeTests(unittest.TestCase):
