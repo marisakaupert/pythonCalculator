@@ -23,7 +23,10 @@ class Ui_Dialog(object):
         self.calculationsLineEdit = QtWidgets.QLineEdit(Dialog)
         self.calculationsLineEdit.setObjectName("calculationsLineEdit")
         self.calculationsLineEdit.setTextMargins(10, 10, 10, 10)
+        font = self.calculationsLineEdit.font()
+        font.setPointSize(35)
         self.calculationsLineEdit.setReadOnly(True)
+        self.calculationsLineEdit.setFont(font)
         self.calculationsVerticalLayout.addWidget(self.calculationsLineEdit)
         self.buttonsGridLayout = QtWidgets.QGridLayout()
         self.buttonsGridLayout.setObjectName("buttonsGridLayout")
@@ -132,9 +135,10 @@ class Ui_Dialog(object):
         self.historyLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.historyLabel.setObjectName("historyLabel")
         self.historyVerticalLayout.addWidget(self.historyLabel)
-        self.listWidget = QtWidgets.QListWidget(Dialog)
-        self.listWidget.setObjectName("listWidget")
-        self.historyVerticalLayout.addWidget(self.listWidget)
+        self.historyListWidget = QtWidgets.QListWidget(Dialog)
+        self.historyListWidget.setObjectName("historyListWidget")
+        self.historyListWidget.setMinimumSize(300, 100)
+        self.historyVerticalLayout.addWidget(self.historyListWidget)
         self.overallHorizontalLayout.addLayout(self.historyVerticalLayout)
         self.gridLayout.addLayout(self.overallHorizontalLayout, 0, 0, 1, 1)
 
@@ -143,7 +147,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Calculator"))
         self.addPushButton.setText(_translate("Dialog", "+"))
         self.sixPushButton.setText(_translate("Dialog", "6"))
         self.ninePushButton.setText(_translate("Dialog", "9"))
@@ -179,4 +183,3 @@ if __name__ == "__main__":
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
-
