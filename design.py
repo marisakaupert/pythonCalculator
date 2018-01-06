@@ -117,12 +117,12 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Calculator"))
         self.addPushButton.setText(_translate("Dialog", "+"))
         self.sixPushButton.setText(_translate("Dialog", "6"))
         self.ninePushButton.setText(_translate("Dialog", "9"))
         self.subtractPushButton.setText(_translate("Dialog", "-"))
-        self.cubePushButton.setText(_translate("Dialog", "cube"))
+        self.cubePushButton.setText(_translate("Dialog", "x" + u'\xb3'))
         self.onePushButton.setText(_translate("Dialog", "1"))
         self.fivePushButton.setText(_translate("Dialog", "5"))
         self.threePushButton.setText(_translate("Dialog", "3"))
@@ -132,11 +132,11 @@ class Ui_Dialog(object):
         self.dividePushButton.setText(_translate("Dialog", "/"))
         self.twoPushButton.setText(_translate("Dialog", "2"))
         self.modulusPushButton.setText(_translate("Dialog", "%"))
-        self.squarePushButton.setText(_translate("Dialog", "square"))
+        self.squarePushButton.setText(_translate("Dialog", "x" + u'\xb2'))
         self.clearPushButton.setText(_translate("Dialog", "CLEAR"))
         self.sevenPushButton.setText(_translate("Dialog", "7"))
         self.fourPushButton.setText(_translate("Dialog", "4"))
-        self.sqrtPushButton.setText(_translate("Dialog", "squareRoot"))
+        self.sqrtPushButton.setText(_translate("Dialog", u'\u221a'))
         self.zeroPushButton.setText(_translate("Dialog", "0"))
         self.negatePushButton.setText(_translate("Dialog", "(-)"))
         self.decimalPushButton.setText(_translate("Dialog", "."))
