@@ -7,15 +7,6 @@
         font-size: 16px;
         min-width: 150px;
         min-height: 80px;
-        font-family: monotype;
-    }
-    QPushButton#zeroPushButton, QPushButton#onePushButton,
-    QPushButton#twoPushButton, QPushButton#threePushButton,
-    QPushButton#fourPushButton, QPushButton#fivePushButton,
-    QPushButton#sixPushButton, QPushButton#sevenPushButton,
-    QPushButton#eightPushButton, QPushButton#ninePushButton {
-        background-color: #f1f1f1;
-        font-weight: bold;
     }
     QLineEdit {
         font-size: 35px;
