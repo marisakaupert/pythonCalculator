@@ -14,7 +14,13 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.makeConnections()
 
     def makeConnections(self):
+        # digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        # for num in digits:
+        #     if self.
+        # self.createGeometryPushButton.clicked.connect(self.printDigits)
+        # self.createGeometryPushButton.clicked.connect(self.doMath)
         pass
+
 
 
 def main():
