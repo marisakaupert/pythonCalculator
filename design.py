@@ -23,47 +23,58 @@ class Ui_Dialog(object):
         self.calculationsLineEdit.setObjectName("calculationsLineEdit")
         self.calculationsLineEdit.setEnabled(False)
         self.calculationsVerticalLayout.addWidget(self.calculationsLineEdit)
+        self.uiHorizontalLayout = QtWidgets.QHBoxLayout()
+        self.uiHorizontalLayout.setContentsMargins(5, 5, 5, 5)
+        self.uiHorizontalLayout.setObjectName("uiHorizontalLayout")
+        self.clearPushButton = QtWidgets.QPushButton("CLEAR")
+        self.uiHorizontalLayout.addWidget(self.clearPushButton)
+        self.undoPushButton = QtWidgets.QPushButton("UNDO")
+        self.uiHorizontalLayout.addWidget(self.undoPushButton)
+        self.calculationsVerticalLayout.addLayout(self.uiHorizontalLayout)
         self.buttonsGridLayout = QtWidgets.QGridLayout()
         self.buttonsGridLayout.setObjectName("buttonsGridLayout")
 
         # buttons
-        self.buttonGroup = QtWidgets.QButtonGroup()
-        buttonTextDict = {
-            0: "+",
-            1: "6",
-            2: "9",
-            3: "-",
-            4: "x" + u'\xb3',
-            5: "1",
-            6: "5",
-            7: "3",
-            8: "8",
-            9: "UNDO",
-            10: "X",
-            11: "/",
-            12: "2",
-            13: "%",
-            14: "x" + u'\xb2',
-            15: "CLEAR",
-            16: "7",
-            17: "4",
-            18: u'\u221a',
-            19: "0",
-            10: "(-)",
-            11: ".",
-            12: "ENTER",
-            13: "1/x"
+        self.buttonsGroup = QtWidgets.QButtonGroup()
+        cube = u'x\xb3'
+        square = u'x\xb2'
+        sqrt = u'\u221a'
+        buttonsTextDict = {
+            (0, 0): sqrt.encode('utf-8'),
+            (0, 1): "7",
+            (0, 2): "8",
+            (0, 3): "9",
+            (0, 4): "/",
+            (1, 0): square.encode('utf-8'),
+            (1, 1): "4",
+            (1, 2): "5",
+            (1, 3): "6",
+            (1, 4): "X",
+            (2, 0): cube.encode('utf-8'),
+            (2, 1): "1",
+            (2, 2): "2",
+            (2, 3): "3",
+            (2, 4): "-",
+            (3, 0): "1/x",
+            (3, 1): "(-)",
+            (3, 2): "0",
+            (3, 3): ".",
+            (3, 4): "+"
         }
 
-        for i in range(6):
-            for j in range(4):
-                self.pressableButtons = QtWidgets.QPushButton()
+        for i in range(4):
+            for j in range(5):
+                self.mathButtons = QtWidgets.QPushButton()
+                if (i, j) in buttonsTextDict.keys():
+                    self.mathButtons.setText(
+                        "{0}".format(buttonsTextDict[(i, j)]))
 
-                self.buttonGroup.addButton(self.pressableButtons)
-                self.buttonsGridLayout.addWidget(self.pressableButtons, i, j)
+                self.buttonsGroup.addButton(self.mathButtons)
+                self.buttonsGridLayout.addWidget(self.mathButtons, i, j)
 
-        # end of buttons
         self.calculationsVerticalLayout.addLayout(self.buttonsGridLayout)
+        self.equalsPushButton = QtWidgets.QPushButton("=")
+        self.calculationsVerticalLayout.addWidget(self.equalsPushButton)
         self.overallHorizontalLayout.addLayout(self.calculationsVerticalLayout)
         self.historyVerticalLayout = QtWidgets.QVBoxLayout()
         self.historyVerticalLayout.setContentsMargins(5, 5, 5, 5)
