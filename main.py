@@ -22,7 +22,6 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         pass
 
 
-
 def main():
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
