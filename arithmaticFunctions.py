@@ -31,9 +31,6 @@ class MainFunctions(object):
         print(result)
         return round(result, 12)
 
-    def modulus(self):
-        pass
-
     def squareRoot(self, number=None):
         if number is None:
             return "Invalid Input"
