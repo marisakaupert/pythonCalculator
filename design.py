@@ -76,8 +76,8 @@ class Ui_Dialog(object):
                 self.buttonsGridLayout.addWidget(self.mathButtons, i, j)
 
         self.calculationsVerticalLayout.addLayout(self.buttonsGridLayout)
-        self.equalsPushButton = QtWidgets.QPushButton("=")
-        self.calculationsVerticalLayout.addWidget(self.equalsPushButton)
+        self.enterPushButton = QtWidgets.QPushButton("ENTER")
+        self.calculationsVerticalLayout.addWidget(self.enterPushButton)
         self.overallHorizontalLayout.addLayout(self.calculationsVerticalLayout)
         self.historyVerticalLayout = QtWidgets.QVBoxLayout()
         self.historyVerticalLayout.setContentsMargins(5, 5, 5, 5)
