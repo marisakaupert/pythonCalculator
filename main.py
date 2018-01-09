@@ -8,6 +8,8 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        QtGui.QFontDatabase.addApplicationFont("fonts/Montserrat-Regular.ttf")
+        QtGui.QFontDatabase.addApplicationFont("fonts/Montserrat-Bold.ttf")
         sshFile = "stylesheet.qss"
         with open(sshFile, "r") as fh:
             self.setStyleSheet(fh.read())
