@@ -69,6 +69,9 @@ class Ui_Dialog(object):
                     self.mathButtons.setText(
                         "{0}".format(buttonsTextDict[(i, j)]))
 
+                if self.mathButtons.text().isdigit():
+                    self.mathButtons.setObjectName('digitButtons')
+
                 self.buttonsGroup.addButton(self.mathButtons)
                 self.buttonsGridLayout.addWidget(self.mathButtons, i, j)
 
