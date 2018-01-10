@@ -36,6 +36,7 @@
         border: none;
         background-color: #69d2e7;
         color: #1b2f38;
+        font-weight: 600;
     }
     QLabel {
         font-size: 20px;
