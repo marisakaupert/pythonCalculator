@@ -10,10 +10,19 @@
         color: #ffceb8;
         font-family: Montserrat;
     }
+    QPushButton:hover {
+        background-color: #70261e;
+        border: 2px solid #ffceb8;
+    }
     QPushButton#digitButtons {
         background-color: #edc769;
         color: #fa6900;
         font-weight: 700;
+    }
+    QPushButton#digitButtons:hover {
+        background-color: #b5420f;
+        color: #ffbc36;
+        border: 2px solid #ffbc36;
     }
     QPushButton#clearPushButton,
     QPushButton#undoPushButton,
