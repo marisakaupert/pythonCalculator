@@ -31,7 +31,7 @@
         font-family: Montserrat;
     }
     QLineEdit {
-        font-size: 40px;
+        font-size: 70px;
         padding: 20px;
         border: none;
         background-color: #69d2e7;
