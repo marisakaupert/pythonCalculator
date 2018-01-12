@@ -19,8 +19,13 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
 
     def printDigits(self, button):
-        if button.text().isdigit():
-            self.calculationsLineEdit.setText(button.text())
+        currentLine = self.calculationsLineEdit.text()
+        limit = len(self.calculationsLineEdit.text())
+        if button.text().isdigit() and limit < 16:
+            if currentLine == "0":
+                self.calculationsLineEdit.setText(button.text())
+            else:
+                self.calculationsLineEdit.setText(currentLine + button.text())
 
 
 def main():
