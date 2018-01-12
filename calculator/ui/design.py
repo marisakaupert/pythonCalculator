@@ -22,6 +22,7 @@ class Ui_Dialog(object):
         self.calculationsLineEdit = QtWidgets.QLineEdit(Dialog)
         self.calculationsLineEdit.setObjectName("calculationsLineEdit")
         self.calculationsLineEdit.setEnabled(False)
+        self.calculationsLineEdit.setText("0")
         self.calculationsLineEdit.setAlignment(QtCore.Qt.AlignRight)
         self.calculationsVerticalLayout.addWidget(self.calculationsLineEdit)
         self.uiHorizontalLayout = QtWidgets.QHBoxLayout()
