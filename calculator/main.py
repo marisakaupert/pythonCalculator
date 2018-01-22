@@ -18,27 +18,18 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def makeConnections(self):
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
-        self.buttonsGroup.buttonClicked.connect(self.add)
 
     def printDigits(self, button):
         currentLine = self.calculationsLineEdit.text()
         limit = len(self.calculationsLineEdit.text())
-        if (button.text().isdigit() or button.text() == ".") and limit < 16:
+        if (button.text().isdigit() or button.text() == ".") and limit < 15:
             if currentLine == "0":
                 self.calculationsLineEdit.setText(button.text())
             else:
                 self.calculationsLineEdit.setText(currentLine + button.text())
 
-    def add(self, button):
-        operands
-        if "." in self.calculationsLineEdit.text():
-            operands = float(self.calculationsLineEdit.text())
-        else:
-            operands = int(self.calculationsLineEdit.text())
-        print(operands)
-        if button.text() == "+":
-            result = self.mathFunctions.add(operands)
-            print(result)
+    def arithmaticFunctions(self):
+        pass
 
 
 def main():
