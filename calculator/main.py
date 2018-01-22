@@ -18,6 +18,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def makeConnections(self):
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
+        self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
 
     def printDigits(self, button):
         currentLine = self.calculationsLineEdit.text()
@@ -27,6 +28,15 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.calculationsLineEdit.setText(button.text())
             else:
                 self.calculationsLineEdit.setText(currentLine + button.text())
+
+    def negateNumbers(self, button):
+        currentNum = self.calculationsLineEdit.text()
+        if button.text() == "(-)" and "-" not in currentNum:
+            self.calculationsLineEdit.setText("-" + currentNum)
+
+        if button.text() == "(-)" and "-" in currentNum:
+            positiveNum = currentNum.replace("-", "")
+            self.calculationsLineEdit.setText(positiveNum)
 
     def arithmaticFunctions(self):
         pass
