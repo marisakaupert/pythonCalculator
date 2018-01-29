@@ -70,21 +70,19 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             self.calculationsLineEdit.setText("0")
 
     def getAnswer(self):
-        self.expression.append(self.calculationsLineEdit.text())
-        combinedExpr = "".join(self.expression)
-        self.result = str(eval(combinedExpr))
-        self.calculationsLineEdit.setText(self.result)
-        self.addHistory()
+        if len(self.expression) > 1:
+            self.expression.append(self.calculationsLineEdit.text())
+            combinedExpr = "".join(self.expression)
+            self.result = str(eval(combinedExpr))
+            self.calculationsLineEdit.setText(self.result)
+            self.addHistory()
 
     def addHistory(self):
         formattedExpr = " ".join(self.expression)
         formattedExpr = formattedExpr.replace("*", "x")
         item = QtWidgets.QListWidgetItem(formattedExpr + " = " + self.result)
         item.setTextAlignment(QtCore.Qt.AlignRight)
-        if self.calculationsLineEdit.text() == "0":
-            pass
-        else:
-            self.historyListWidget.addItem(item)
+        self.historyListWidget.addItem(item)
         self.clearHistory()
 
     def clearHistory(self):
