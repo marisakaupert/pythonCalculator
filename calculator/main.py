@@ -20,6 +20,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.clearPushButton.clicked.connect(self.clearLine)
         self.undoPushButton.clicked.connect(self.undoLastAction)
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
+        self.buttonsGroup.buttonClicked.connect(self.makeDecimal)
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
 
     def clearLine(self):
@@ -27,9 +28,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.calculationsLineEdit.setText("0")
 
     def undoLastAction(self):
-        currentLine = self.calculationsLineEdit.text()
-        self.calculationsLineEdit.setText(currentLine[:-1])
-        if len(currentLine) < 2:
+        line = self.calculationsLineEdit.text()
+        self.calculationsLineEdit.setText(line[:-1])
+        if len(line) < 2:
             self.calculationsLineEdit.setText("0")
 
     def printDigits(self, button):
@@ -40,6 +41,11 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.calculationsLineEdit.setText(button.text())
             else:
                 self.calculationsLineEdit.setText(currentLine + button.text())
+
+    def makeDecimal(self, button):
+        convertToFloat = self.calculationsLineEdit.text()
+        if button.text() == "." and "." not in convertToFloat:
+            self.calculationsLineEdit.setText(convertToFloat + ".")
 
     def negateNumbers(self, button):
         currentNum = self.calculationsLineEdit.text()
