@@ -88,9 +88,9 @@ class Ui_Dialog(object):
         self.historyLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.historyLabel.setObjectName("historyLabel")
         self.historyVerticalLayout.addWidget(self.historyLabel)
-        self.listWidget = QtWidgets.QListWidget(Dialog)
-        self.listWidget.setObjectName("listWidget")
-        self.historyVerticalLayout.addWidget(self.listWidget)
+        self.historyListWidget = QtWidgets.QListWidget(Dialog)
+        self.historyListWidget.setObjectName("historyListWidget")
+        self.historyVerticalLayout.addWidget(self.historyListWidget)
         self.overallHorizontalLayout.addLayout(self.historyVerticalLayout)
         self.gridLayout.addLayout(self.overallHorizontalLayout, 0, 0, 1, 1)
 
