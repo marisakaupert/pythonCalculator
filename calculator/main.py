@@ -51,12 +51,12 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def negateNumbers(self, button):
         currentNum = self.calculationsLineEdit.text()
-        if button.text() == "(-)" and "-" not in currentNum:
-            self.calculationsLineEdit.setText("-" + currentNum)
-
-        if button.text() == "(-)" and "-" in currentNum:
-            positiveNum = currentNum.replace("-", "")
-            self.calculationsLineEdit.setText(positiveNum)
+        if button.text() == "(-)" and currentNum != "0":
+            if "-" in currentNum:
+                positiveNum = currentNum.replace("-", "")
+                self.calculationsLineEdit.setText(positiveNum)
+            else:
+                self.calculationsLineEdit.setText("-" + currentNum)
 
     def setMathmaticalExpression(self, button):
         mathFunctions = ["+", "-", "X", "/"]
