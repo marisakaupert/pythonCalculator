@@ -81,9 +81,15 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         formattedExpr = formattedExpr.replace("*", "x")
         item = QtWidgets.QListWidgetItem(formattedExpr + " = " + self.result)
         item.setTextAlignment(QtCore.Qt.AlignRight)
-        self.historyListWidget.addItem(item)
-        
+        if self.calculationsLineEdit.text() == "0":
+            pass
+        else:
+            self.historyListWidget.addItem(item)
+        self.clearHistory()
 
+    def clearHistory(self):
+        self.expression = []
+        self.calculationsLineEdit.setText("0")
 
 
 def main():
