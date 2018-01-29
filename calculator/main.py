@@ -18,7 +18,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def makeConnections(self):
         self.clearPushButton.clicked.connect(self.clearLine)
-        self.undoPushButton(self.undoLastAction)
+        self.undoPushButton.clicked.connect(self.undoLastAction)
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
 
@@ -27,7 +27,10 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.calculationsLineEdit.setText("0")
 
     def undoLastAction(self):
-        pass
+        currentLine = self.calculationsLineEdit.text()
+        self.calculationsLineEdit.setText(currentLine[:-1])
+        if len(currentLine) < 2:
+            self.calculationsLineEdit.setText("0")
 
     def printDigits(self, button):
         currentLine = self.calculationsLineEdit.text()
