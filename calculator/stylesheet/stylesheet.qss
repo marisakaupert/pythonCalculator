@@ -46,10 +46,13 @@
         font-style: italic;
     }
     QListWidget {
-        min-width: 300px;
+        min-width: 450px;
         min-height: 100px;
         background-color: #69d2e7;
         border: none;
         font-family: Montserrat;
         font-weight: 700;
+        font-size: 40px;
+        padding: 20px;
+        color: #1b2f38;
     }
