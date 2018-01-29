@@ -71,9 +71,19 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def getAnswer(self):
         self.expression.append(self.calculationsLineEdit.text())
-        result = "".join(self.expression)
-        self.calculationsLineEdit.setText(str(eval(result)))
-        self.expression = []
+        combinedExpr = "".join(self.expression)
+        self.result = str(eval(combinedExpr))
+        self.calculationsLineEdit.setText(self.result)
+        self.addHistory()
+
+    def addHistory(self):
+        formattedExpr = " ".join(self.expression)
+        formattedExpr = formattedExpr.replace("*", "x")
+        item = QtWidgets.QListWidgetItem(formattedExpr + " = " + self.result)
+        item.setTextAlignment(QtCore.Qt.AlignRight)
+        self.historyListWidget.addItem(item)
+        
+
 
 
 def main():
