@@ -17,13 +17,22 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.mathFunctions = MainFunctions()
 
     def makeConnections(self):
+        self.clearPushButton.clicked.connect(self.clearLine)
+        self.undoPushButton(self.undoLastAction)
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
+
+    def clearLine(self):
+        self.calculationsLineEdit.clear()
+        self.calculationsLineEdit.setText("0")
+
+    def undoLastAction(self):
+        pass
 
     def printDigits(self, button):
         currentLine = self.calculationsLineEdit.text()
         limit = len(self.calculationsLineEdit.text())
-        if (button.text().isdigit() or button.text() == ".") and limit < 15:
+        if button.text().isdigit() and limit < 15:
             if currentLine == "0":
                 self.calculationsLineEdit.setText(button.text())
             else:
