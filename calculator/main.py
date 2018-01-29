@@ -14,7 +14,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         with open(sshFile, "r") as fh:
             self.setStyleSheet(fh.read())
         self.makeConnections()
-        self.mathFunctions = MainFunctions()
+        self.expression = []
 
     def makeConnections(self):
         self.clearPushButton.clicked.connect(self.clearLine)
@@ -22,6 +22,8 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
         self.buttonsGroup.buttonClicked.connect(self.makeDecimal)
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
+        self.buttonsGroup.buttonClicked.connect(self.setMathmaticalExpression)
+        self.enterPushButton.clicked.connect(self.getAnswer)
 
     def clearLine(self):
         self.calculationsLineEdit.clear()
@@ -56,8 +58,22 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             positiveNum = currentNum.replace("-", "")
             self.calculationsLineEdit.setText(positiveNum)
 
-    def arithmaticFunctions(self):
-        pass
+    def setMathmaticalExpression(self, button):
+        mathFunctions = ["+", "-", "X", "/"]
+        currentLine = self.calculationsLineEdit.text()
+        if button.text() in mathFunctions:
+            self.expression.append(currentLine)
+            if button.text() == "X":
+                self.expression.append("*")
+            else:
+                self.expression.append(button.text())
+            self.calculationsLineEdit.setText("0")
+
+    def getAnswer(self):
+        self.expression.append(self.calculationsLineEdit.text())
+        result = "".join(self.expression)
+        self.calculationsLineEdit.setText(str(eval(result)))
+        self.expression = []
 
 
 def main():
