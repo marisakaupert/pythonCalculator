@@ -75,7 +75,6 @@ class Ui_Dialog(object):
                     self.mathButtons.setObjectName('digitButtons')
 
                 self.buttonsGroup.addButton(self.mathButtons)
-
                 self.buttonsGridLayout.addWidget(self.mathButtons, i, j)
 
         self.calculationsVerticalLayout.addLayout(self.buttonsGridLayout)
