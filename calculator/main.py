@@ -73,9 +73,12 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         if len(self.expression) > 1:
             self.expression.append(self.calculationsLineEdit.text())
             combinedExpr = "".join(self.expression)
-            self.result = str(eval(combinedExpr))
-            self.calculationsLineEdit.setText(self.result)
-            self.addHistory()
+            try:
+                self.result = str(eval(combinedExpr))
+                self.calculationsLineEdit.setText(self.result)
+                self.addHistory()
+            except ZeroDivisionError:
+                self.calculationsLineEdit.setText("Cannot divide by 0")
 
     def addHistory(self):
         formattedExpr = " ".join(self.expression)
