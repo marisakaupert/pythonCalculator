@@ -52,7 +52,7 @@
         border: none;
         font-family: Montserrat;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 30px;
         padding: 20px;
         color: #1b2f38;
     }
