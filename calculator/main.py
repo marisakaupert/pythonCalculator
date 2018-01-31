@@ -36,8 +36,8 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             self.calculationsLineEdit.setText("0")
 
     def resetError(self):
-        zeroErrorMsg = "Cannot divide by 0"
-        if self.calculationsLineEdit.text() == zeroErrorMsg:
+        errorMsg = "Invalid Input"
+        if self.calculationsLineEdit.text() == errorMsg:
             self.calculationsLineEdit.clear()
             self.expression = []
             self.enterPushButton.setEnabled(True)
@@ -86,7 +86,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.calculationsLineEdit.setText(self.result)
                 self.addHistory()
             except ZeroDivisionError:
-                self.calculationsLineEdit.setText("Cannot divide by 0")
+                self.calculationsLineEdit.setText("Invalid Input")
                 self.enterPushButton.setEnabled(False)
 
     def addHistory(self):
