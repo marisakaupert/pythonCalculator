@@ -2,13 +2,13 @@
         background-color: #69d2e7;
     }
     QPushButton {
-        background-color: #ef795e;
-        font-size: 25px;
         min-width: 150px;
         min-height: 80px;
         border-radius: 10px;
-        color: #ffceb8;
+        font-size: 25px;
         font-family: Montserrat;
+        background-color: #ef795e;
+        color: #ffceb8;
     }
     QPushButton:hover {
         background-color: #70261e;
@@ -24,11 +24,8 @@
         color: #ffbc36;
         border: 2px solid #ffbc36;
     }
-    QPushButton#clearPushButton,
-    QPushButton#undoPushButton,
-    QPushButton#enterPushButton {
-        font-size: 25px;
-        font-family: Montserrat;
+    QPushButton:disabled {
+        background-color: #ff0000;
     }
     QLineEdit {
         font-size: 70px;
