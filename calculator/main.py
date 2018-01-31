@@ -15,6 +15,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             self.setStyleSheet(fh.read())
         self.makeConnections()
         self.expression = []
+        self.error = False
 
     def makeConnections(self):
         self.clearPushButton.clicked.connect(self.clearLine)
@@ -28,6 +29,10 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
     def clearLine(self):
         self.calculationsLineEdit.clear()
         self.calculationsLineEdit.setText("0")
+        if self.error is True:
+            self.expression = []
+            self.enterPushButton.setEnabled(True)
+            self.error = False
 
     def undoLastAction(self):
         line = self.calculationsLineEdit.text()
@@ -36,11 +41,11 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             self.calculationsLineEdit.setText("0")
 
     def resetError(self):
-        errorMsg = "Invalid Input"
-        if self.calculationsLineEdit.text() == errorMsg:
+        if self.error is True:
             self.calculationsLineEdit.clear()
             self.expression = []
             self.enterPushButton.setEnabled(True)
+            self.error = False
 
     def printDigits(self, button):
         self.resetError()
@@ -88,6 +93,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             except ZeroDivisionError:
                 self.calculationsLineEdit.setText("Invalid Input")
                 self.enterPushButton.setEnabled(False)
+                self.error = True
 
     def addHistory(self):
         formattedExpr = " ".join(self.expression)
