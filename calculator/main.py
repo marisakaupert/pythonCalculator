@@ -13,12 +13,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         sshFile = "stylesheet/stylesheet.qss"
         with open(sshFile, "r") as fh:
             self.setStyleSheet(fh.read())
-        self.makeConnections()
         self.expression = []
         self.error = False
-
-    def initStateUi(self):
-        pass
+        self.makeConnections()
 
     def makeConnections(self):
         self.clearPushButton.clicked.connect(self.clearLine)
@@ -28,17 +25,20 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
         self.buttonsGroup.buttonClicked.connect(self.setMathmaticalExpression)
         self.enterPushButton.clicked.connect(self.getAnswer)
+        self.toggleNegative()
 
     def clearLine(self):
         self.calculationsLineEdit.clear()
         self.calculationsLineEdit.setText("0")
         self.resetError()
+        self.toggleNegative()
 
     def undoLastAction(self):
         line = self.calculationsLineEdit.text()
         self.calculationsLineEdit.setText(line[:-1])
         if len(line) < 2:
             self.calculationsLineEdit.setText("0")
+        self.toggleNegative()
 
     def resetError(self):
         if self.error is True:
@@ -58,6 +58,16 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.calculationsLineEdit.setText(button.text())
             else:
                 self.calculationsLineEdit.setText(currentLine + button.text())
+        self.toggleNegative()
+
+    def toggleNegative(self):
+        validNegative = self.calculationsLineEdit.text()
+        for button in self.buttonsGroup.buttons():
+            if button.text() == "(-)":
+                if validNegative == "0" or self.error is True:
+                    button.setEnabled(False)
+                else:
+                    button.setEnabled(True)
 
     def makeDecimal(self, button):
         convertToFloat = self.calculationsLineEdit.text()
@@ -83,6 +93,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             else:
                 self.expression.append(button.text())
             self.calculationsLineEdit.setText("0")
+        self.toggleNegative()
 
     def getAnswer(self):
         if len(self.expression) > 1:
@@ -98,6 +109,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.toggleNonDigitButtons()
                 self.enterPushButton.setEnabled(False)
                 self.undoPushButton.setEnabled(False)
+        self.toggleNegative()
 
     def toggleNonDigitButtons(self):
         for button in self.buttonsGroup.buttons():
@@ -113,7 +125,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         item = QtWidgets.QListWidgetItem(formattedExpr + " = " + self.result)
         item.setTextAlignment(QtCore.Qt.AlignRight)
         self.historyListWidget.addItem(item)
-        self.restHistoryAfterAdding()
+        self.resetHistoryAfterAdding()
 
     def resetHistoryAfterAdding(self):
         self.expression = []
