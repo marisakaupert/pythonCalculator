@@ -17,6 +17,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.expression = []
         self.error = False
 
+    def initStateUi(self):
+        pass
+
     def makeConnections(self):
         self.clearPushButton.clicked.connect(self.clearLine)
         self.undoPushButton.clicked.connect(self.undoLastAction)
@@ -29,10 +32,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
     def clearLine(self):
         self.calculationsLineEdit.clear()
         self.calculationsLineEdit.setText("0")
-        if self.error is True:
-            self.expression = []
-            self.enterPushButton.setEnabled(True)
-            self.error = False
+        self.resetError()
 
     def undoLastAction(self):
         line = self.calculationsLineEdit.text()
@@ -44,8 +44,10 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         if self.error is True:
             self.calculationsLineEdit.clear()
             self.expression = []
-            self.enterPushButton.setEnabled(True)
             self.error = False
+            self.enterPushButton.setEnabled(True)
+            self.undoPushButton.setEnabled(True)
+            self.toggleNonDigitButtons()
 
     def printDigits(self, button):
         self.resetError()
@@ -92,8 +94,18 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.addHistory()
             except ZeroDivisionError:
                 self.calculationsLineEdit.setText("Invalid Input")
-                self.enterPushButton.setEnabled(False)
                 self.error = True
+                self.toggleNonDigitButtons()
+                self.enterPushButton.setEnabled(False)
+                self.undoPushButton.setEnabled(False)
+
+    def toggleNonDigitButtons(self):
+        for button in self.buttonsGroup.buttons():
+            if not button.text().isdigit():
+                if self.error is True:
+                    button.setEnabled(False)
+                else:
+                    button.setEnabled(True)
 
     def addHistory(self):
         formattedExpr = " ".join(self.expression)
@@ -101,9 +113,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         item = QtWidgets.QListWidgetItem(formattedExpr + " = " + self.result)
         item.setTextAlignment(QtCore.Qt.AlignRight)
         self.historyListWidget.addItem(item)
-        self.clearHistory()
+        self.restHistoryAfterAdding()
 
-    def clearHistory(self):
+    def resetHistoryAfterAdding(self):
         self.expression = []
         self.calculationsLineEdit.setText("0")
 
