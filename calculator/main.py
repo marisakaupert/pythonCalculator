@@ -35,7 +35,15 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         if len(line) < 2:
             self.calculationsLineEdit.setText("0")
 
+    def resetError(self):
+        zeroErrorMsg = "Cannot divide by 0"
+        if self.calculationsLineEdit.text() == zeroErrorMsg:
+            self.calculationsLineEdit.clear()
+            self.expression = []
+            self.enterPushButton.setEnabled(True)
+
     def printDigits(self, button):
+        self.resetError()
         currentLine = self.calculationsLineEdit.text()
         limit = len(self.calculationsLineEdit.text())
         if button.text().isdigit() and limit < 15:
@@ -79,6 +87,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.addHistory()
             except ZeroDivisionError:
                 self.calculationsLineEdit.setText("Cannot divide by 0")
+                self.enterPushButton.setEnabled(False)
 
     def addHistory(self):
         formattedExpr = " ".join(self.expression)
