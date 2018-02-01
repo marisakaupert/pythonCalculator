@@ -99,6 +99,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         if len(self.expression) > 1:
             self.expression.append(self.calculationsLineEdit.text())
             combinedExpr = "".join(self.expression)
+            for i in self.expression:
+                if i.isdigit() and "." not in i:
+                    print(i)
             try:
                 self.result = str(eval(combinedExpr))
                 self.calculationsLineEdit.setText(self.result)
