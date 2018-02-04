@@ -1,4 +1,5 @@
 import sys
+import math
 from ui.design import Ui_Dialog
 from arithmaticFunctions import MainFunctions
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -26,6 +27,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.buttonsGroup.buttonClicked.connect(self.setMathmaticalExpression)
         self.enterPushButton.clicked.connect(self.getAnswer)
         self.toggleNegative()
+        self.buttonsGroup.buttonClicked.connect(self.squareRoot)
 
     def clearLine(self):
         self.calculationsLineEdit.clear()
@@ -99,9 +101,6 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         if len(self.expression) > 1:
             self.expression.append(self.calculationsLineEdit.text())
             combinedExpr = "".join(self.expression)
-            for i in self.expression:
-                if i.isdigit() and "." not in i:
-                    print(i)
             try:
                 self.result = str(eval(combinedExpr))
                 self.calculationsLineEdit.setText(self.result)
@@ -133,6 +132,13 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
     def resetHistoryAfterAdding(self):
         self.expression = []
         self.calculationsLineEdit.setText("0")
+
+    def squareRoot(self, button):
+        currentNum = self.calculationsLineEdit.text()
+        if button.text() == u'\u221a':
+            sqrtResult = math.sqrt(float(currentNum))
+            self.calculationsLineEdit.setText(str(sqrtResult))
+
 
 
 def main():
