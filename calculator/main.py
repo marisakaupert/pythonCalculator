@@ -28,6 +28,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.enterPushButton.clicked.connect(self.getAnswer)
         self.toggleNegative()
         self.buttonsGroup.buttonClicked.connect(self.squareRoot)
+        self.buttonsGroup.buttonClicked.connect(self.powerOfTwo)
+        self.buttonsGroup.buttonClicked.connect(self.cube)
+        self.buttonsGroup.buttonClicked.connect(self.inverse)
 
     def clearLine(self):
         self.calculationsLineEdit.clear()
@@ -42,9 +45,17 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             self.calculationsLineEdit.setText("0")
         self.toggleNegative()
 
+    def handleError(self):
+        self.calculationsLineEdit.setText("Invalid Input")
+        self.error = True
+        self.toggleNonDigitButtons()
+        self.enterPushButton.setEnabled(False)
+        self.undoPushButton.setEnabled(False)
+
     def resetError(self):
         if self.error is True:
             self.calculationsLineEdit.clear()
+            self.calculationsLineEdit.setText("0")
             self.expression = []
             self.error = False
             self.enterPushButton.setEnabled(True)
@@ -106,11 +117,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.calculationsLineEdit.setText(self.result)
                 self.addHistory()
             except ZeroDivisionError:
-                self.calculationsLineEdit.setText("Invalid Input")
-                self.error = True
-                self.toggleNonDigitButtons()
-                self.enterPushButton.setEnabled(False)
-                self.undoPushButton.setEnabled(False)
+                self.handleError()
         self.toggleNegative()
 
     def toggleNonDigitButtons(self):
@@ -138,6 +145,27 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         if button.text() == u'\u221a':
             sqrtResult = math.sqrt(float(currentNum))
             self.calculationsLineEdit.setText(str(sqrtResult))
+
+    def powerOfTwo(self, button):
+        currentNum = self.calculationsLineEdit.text()
+        if button.text() == u'x\xb2':
+            powerOfTwoResult = math.pow(float(currentNum), 2)
+            self.calculationsLineEdit.setText(str(powerOfTwoResult))
+
+    def cube(self, button):
+        currentNum = self.calculationsLineEdit.text()
+        if button.text() == u'x\xb3':
+            cubeResult = math.pow(float(currentNum), 3)
+            self.calculationsLineEdit.setText(str(cubeResult))
+
+    def inverse(self, button):
+        currentNum = self.calculationsLineEdit.text()
+        if button.text() == "1/x":
+            try:
+                inverseResult = 1 / float(currentNum)
+                self.calculationsLineEdit.setText(str(inverseResult))
+            except ZeroDivisionError:
+                self.handleError()
 
 
 
