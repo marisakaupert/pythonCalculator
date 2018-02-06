@@ -31,6 +31,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.buttonsGroup.buttonClicked.connect(self.powerOfTwo)
         self.buttonsGroup.buttonClicked.connect(self.cube)
         self.buttonsGroup.buttonClicked.connect(self.inverse)
+        self.historyListWidget.itemDoubleClicked.connect(self.doubleClicked)
 
     def clearLine(self):
         self.calculationsLineEdit.clear()
@@ -166,6 +167,9 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.calculationsLineEdit.setText(str(inverseResult))
             except ZeroDivisionError:
                 self.handleError()
+
+    def doubleClicked(self):
+        self.calculationsLineEdit.setText(self.result)
 
 
 
