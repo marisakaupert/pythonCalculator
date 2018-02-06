@@ -25,7 +25,8 @@
         border: 2px solid #ffbc36;
     }
     QPushButton:disabled {
-        background-color: #ff0000;
+        background-color: #c60002;
+        color: #420001;
     }
     QLineEdit {
         font-size: 70px;
