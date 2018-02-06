@@ -172,7 +172,6 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.calculationsLineEdit.setText(self.result)
 
 
-
 def main():
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
