@@ -22,7 +22,6 @@ class Ui_Dialog(object):
         self.previousInputLineEdit = QtWidgets.QLineEdit(Dialog)
         self.previousInputLineEdit.setObjectName("previousInputLineEdit")
         self.previousInputLineEdit.setEnabled(False)
-        self.previousInputLineEdit.setText("5 + 3")
         self.previousInputLineEdit.setAlignment(QtCore.Qt.AlignRight)
         self.calculationsVerticalLayout.addWidget(self.previousInputLineEdit)
         self.calculationsLineEdit = QtWidgets.QLineEdit(Dialog)
