@@ -22,6 +22,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.clearPushButton.clicked.connect(self.clearLine)
         self.undoPushButton.clicked.connect(self.undoLastAction)
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
+        self.buttonsGroup.buttonClicked.connect(self.showButtonsPushed)
         self.buttonsGroup.buttonClicked.connect(self.makeDecimal)
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
         self.buttonsGroup.buttonClicked.connect(self.setMathmaticalExpression)
@@ -73,6 +74,11 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             else:
                 self.calculationsLineEdit.setText(currentLine + button.text())
         self.toggleNegative()
+
+    def showButtonsPushed(self, button):
+        previouslyPushed = self.previousInputLineEdit.text()
+        self.previousInputLineEdit.setText(
+            previouslyPushed + button.text())
 
     def toggleNegative(self):
         validNegative = self.calculationsLineEdit.text()
@@ -170,6 +176,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def doubleClicked(self):
         self.calculationsLineEdit.setText(self.result)
+        self.toggleNegative()
 
 
 def main():
