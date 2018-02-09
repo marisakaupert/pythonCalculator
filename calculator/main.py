@@ -22,7 +22,6 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.clearPushButton.clicked.connect(self.clearLine)
         self.undoPushButton.clicked.connect(self.undoLastAction)
         self.buttonsGroup.buttonClicked.connect(self.printDigits)
-        self.buttonsGroup.buttonClicked.connect(self.showButtonsPushed)
         self.buttonsGroup.buttonClicked.connect(self.makeDecimal)
         self.buttonsGroup.buttonClicked.connect(self.negateNumbers)
         self.buttonsGroup.buttonClicked.connect(self.setMathmaticalExpression)
@@ -59,6 +58,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
             self.calculationsLineEdit.clear()
             self.calculationsLineEdit.setText("0")
             self.expression = []
+            self.previousInputLineEdit.clear()
             self.error = False
             self.enterPushButton.setEnabled(True)
             self.undoPushButton.setEnabled(True)
@@ -76,9 +76,10 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         self.toggleNegative()
 
     def showButtonsPushed(self, button):
-        previouslyPushed = self.previousInputLineEdit.text()
-        self.previousInputLineEdit.setText(
-            previouslyPushed + button.text())
+        previouslyEntered = self.previousInputLineEdit.text()
+        for i in range(0, len(self.expression)):
+            self.previousInputLineEdit.setText(
+                previouslyEntered + " " + self.expression[i] + " " + button.text())
 
     def toggleNegative(self):
         validNegative = self.calculationsLineEdit.text()
@@ -108,6 +109,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
         currentLine = self.calculationsLineEdit.text()
         if button.text() in mathFunctions:
             self.expression.append(currentLine)
+            self.showButtonsPushed(button)
             if button.text() == "X":
                 self.expression.append("*")
             else:
@@ -145,6 +147,7 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
 
     def resetHistoryAfterAdding(self):
         self.expression = []
+        self.previousInputLineEdit.clear()
         self.calculationsLineEdit.setText("0")
 
     def squareRoot(self, button):
