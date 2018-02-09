@@ -1,5 +1,6 @@
 import sys
 import math
+import re
 from ui.design import Ui_Dialog
 from arithmaticFunctions import MainFunctions
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -178,7 +179,11 @@ class MainWindow(QtWidgets.QDialog, Ui_Dialog):
                 self.handleError()
 
     def doubleClicked(self):
-        self.calculationsLineEdit.setText(self.result)
+        items = self.historyListWidget.selectedItems()
+        for i in range(len(items)):
+            answer = re.split(
+                r"= ", self.historyListWidget.selectedItems()[i].text())
+            self.calculationsLineEdit.setText(answer[-1])
         self.toggleNegative()
 
 
